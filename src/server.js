@@ -2,7 +2,7 @@
 
 const express = require('express');
 const basicAuth = require('../auth/basic-auth-middleware.js');
-const model=require('../model/model.js');
+// const model=require('../model/model.js');
 const users = require('../auth/userModel.js');
 // const mongoose = require('mongoose');
 const oauth = require('../auth/Ouath-middleware.js');
@@ -31,8 +31,8 @@ app.post('/signin',basicAuth, (req, res) => {
 });
 
 app.get('/oauth', oauth, (req, res) => {
-    res.status(200).send(req.token);
-  });
+  res.status(200).send(req.token);
+});
 
 
 module.exports = {
@@ -40,5 +40,5 @@ module.exports = {
   start: port => {
     let PORT = port || process.env.PORT || 3000;
     app.listen(PORT, () => console.log('i am alive :', PORT));
-  }
+  },
 };
