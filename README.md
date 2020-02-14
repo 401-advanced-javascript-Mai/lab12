@@ -1,10 +1,10 @@
-# lab12 
-OAuthar
+# lab13 
+bearer-auth
 ## Author:
 mai yousef and Muna
 ## Links and Resources
 submission PR 
-https://github.com/401-advanced-javascript-Mai/lab12/pulls .
+
  ci/cd
  https://github.com/401-advanced-javascript-Mai/lab12/actions .
 
@@ -26,4 +26,4 @@ API_SERVER=http://localhost:3000/oauth
 test not completed yet
 
 ## uml
-![](Oauth.jpg)
+![](bearer-auth.jpg)

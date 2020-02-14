@@ -3,6 +3,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+require('dotenv').config();
 // e
 
 //  our schema 
@@ -34,8 +35,60 @@ users.pre('save', async function (user) {
     }
   } 
 
+  
+users.statics.authenticateToken = async function(token) {
+  console.log('token', token)
+  try {
+    // console.log('hi');
+  
+    // console.log('token inside try' , token)
+    // to do the time 
+    // let token = jwt.sign({ username: user.username}, process.env.SECRET, { expiresIn: 60 * 15});
+
+
+    let tokenObject =    jwt.verify(token, process.env.SECRET);
+    
+    console.log('token object', tokenObject);
+    // console.log('muna');
+    let {id} = tokenObject ;
+    let data =   this.findById(id)
+    // this.findById(id)
+    console.log ('users.tokenObject.id', this.findById(id) )
+
+    // console.log ('users.findone', this.findOne({_id: tokenObject.id}))
+    // console.log(' users', tokenObject.user);
+    if (data) {
+// console.log('inside if')
+     return ( tokenObject)
+      // return Promise.resolve(this.findOne({_id: tokenObject.id}));
+    } else {
+      return Promise.reject();
+    }
+  } catch (err) {
+    console.log('mai')
+    return Promise.reject();
+  }
+}
+// users.statics.authenticateToken = async function(token) {
+
+// // async authenticateToken(token){
+//   try {
+//     let parsedTokenObject = jwt.verify(token, process.env.SECRET);
+//     console.log('parsed token obj', parsedTokenObject);
+//     if(users.find({username: parsedTokenObject.username})){
+//       return Promise.resolve(parsedTokenObject);
+//     }
+//     else {
+//       return Promise.reject();
+//     }
+//   }
+//   catch(error) {
+//     return Promise.reject();
+//   }
+// }
+
 //   Method to generate a Token following a valid login
-users.methods.generateToken = function(user) {
+users.statics.generateToken = function(user) {
   // let ourUserInfo = {
 
   // } 

@@ -6,6 +6,7 @@ const basicAuth = require('../auth/basic-auth-middleware.js');
 const users = require('../auth/userModel.js');
 // const mongoose = require('mongoose');
 const oauth = require('../auth/Ouath-middleware.js');
+const bearerOuth = require('../auth/bearer-auth.js');
 
 
 const app = express();
@@ -33,6 +34,10 @@ app.post('/signin',basicAuth, (req, res) => {
 app.get('/oauth', oauth, (req, res) => {
   res.status(200).send(req.token);
 });
+
+app.get('/secret', bearerOuth , (req ,res) =>{
+  res.status(200).json(req.user)
+})
 
 
 module.exports = {
