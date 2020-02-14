@@ -36,8 +36,8 @@ app.get('/oauth', oauth, (req, res) => {
 });
 
 app.get('/secret', bearerOuth , (req ,res) =>{
-  res.status(200).json(req.user)
-})
+  res.status(200).json(req.user);
+});
 
 
 module.exports = {
